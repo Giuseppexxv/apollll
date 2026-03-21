@@ -1,0 +1,28 @@
+# 🎬 Gestione Film - Teatro Apollo
+
+Benvenuto nella zona di gestione dei contenuti. Qui puoi modificare tutti i film e i dettagli visualizzati nell'applicazione.
+
+## 📁 File Principale
+Il file da modificare è: `src/data/movies.ts`
+
+## 📝 Come aggiungere o modificare un film
+Ogni film è un oggetto con le seguenti proprietà:
+
+- `id`: Un numero unico per identificare il film.
+- `title`: Il titolo del film.
+- `genre`: Il genere (es: "Azione / Sci-Fi").
+- `duration`: La durata (es: "120 min").
+- `rating`: Il voto (es: "8.5").
+- `image`: URL della locandina.
+- `time`: Orario di proiezione (solo per "Oggi in Sala").
+- `releaseDate`: Data di uscita (solo per "Prossimamente").
+- `synopsis`: Breve trama del film.
+- `cast`: Lista degli attori principali.
+- `director`: Regista.
+- `country`: Paese di produzione.
+- `pegi`: Classificazione età (es: "12+").
+- `trailer`: URL del trailer (formato embed di YouTube).
+- `isUpcoming`: `true` se il film è in "Prossimamente", `false` se è "Oggi in Sala".
+
+## 🚀 Aggiornamento in Tempo Reale
+Una volta salvate le modifiche nel file `movies.ts`, l'applicazione si aggiornerà automaticamente mostrando i nuovi contenuti.

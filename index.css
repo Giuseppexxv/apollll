@@ -1,0 +1,59 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import React from 'react';
+import { motion } from 'motion/react';
+import { Movie } from '../types';
+import { UpcomingFeaturedCard } from './UpcomingFeaturedCard';
+import { UpcomingCarousel } from './UpcomingCarousel';
+
+interface UpcomingSectionProps {
+  movies: Movie[];
+  onMovieClick: (movie: Movie) => void;
+}
+
+export const UpcomingSection: React.FC<UpcomingSectionProps> = ({ movies, onMovieClick }) => {
+  const featuredMovie = movies.find(m => m.isFeatured) || movies[0];
+  const carouselMovies = movies.filter(m => m.id !== featuredMovie.id);
+
+  return (
+    <section id="prossimamente" className="py-20 md:py-32 bg-black/60 relative overflow-hidden">
+      <div className="absolute top-0 right-0 -mt-20 -mr-20 w-[40vw] h-[40vw] bg-cinema-red/5 blur-[120px] rounded-full pointer-events-none" />
+      
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full overflow-hidden pointer-events-none opacity-[0.02] select-none">
+        <motion.div 
+          animate={{ x: [0, -1000] }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          className="text-[15rem] md:text-[25rem] font-black whitespace-nowrap leading-none"
+        >
+          COMING SOON COMING SOON COMING SOON COMING SOON
+        </motion.div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="mb-12 md:mb-20">
+          <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-16">
+            <div className="relative">
+              <h2 className="text-cinema-gold text-[10px] md:text-xs font-black uppercase tracking-[0.5em] mb-4 relative">Coming Soon</h2>
+              <h3 className="text-5xl md:text-8xl font-black tracking-tighter relative">Prossimamente</h3>
+            </div>
+            <div className="flex-1 md:border-l md:border-white/10 md:pl-12 py-2">
+              <p className="max-w-xl text-gray-400 text-base md:text-xl font-medium leading-relaxed italic">
+                "Le storie più attese dell'anno stanno per arrivare sul grande schermo del Teatro Apollo. Segna le date sul calendario."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <UpcomingFeaturedCard movie={featuredMovie} onClick={() => onMovieClick(featuredMovie)} />
+
+        <UpcomingCarousel 
+          movies={carouselMovies} 
+          onMovieClick={(movie) => onMovieClick(movie)} 
+        />
+      </div>
+    </section>
+  );
+};
